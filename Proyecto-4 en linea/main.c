@@ -13,6 +13,7 @@
 #define ANSI_COLOR_BGBLUE  "\x1b[44m"
 
 #include "Logica.c"
+#include "minimax.c"
 
 // Funciones de desarrollo del juego
 void IniciarTablero(char [N][N]);
@@ -94,7 +95,17 @@ int JuegaJugador(char partida[N][N],int numero_jugador,char ficha){
   ** Salida: retorna un cero siempre(Este numero no afecta en ningun lugar del codigo)
 */
 int JuegaCPU(char partida[N][N], int dificultad,char ficha){
-	//Pendiente porque aun no funciona bien
+		JuegaCPU(partida,1,'X');
+	
+	if(VictoriaCPU(partida)){
+		system("clear");
+		ImprimirTablero(partida);
+		printf("\n");
+		printf(ANSI_COLOR_RED"                                                              Una victoria mas para la Master-TEC9000." ANSI_COLOR_RESET);
+		sleep(2);
+		return 0;
+	}
+	return 1;
 }
 
 /**
@@ -144,15 +155,15 @@ void MenuPrincipal(){
 	
 	printf("\n\n\n\n");
 	printf(ANSI_COLOR_GREEN"                                                            \n");
-	printf("            #             #                                  \n");
-	printf("           ##             #                                \n");
-	printf("          # #   ##  ####  #      # ####   ##   #### #            \n");
-	printf("         #  #  #  # #   # #        #   # #  # #    ##          \n");
-	printf("        #   #  #### #   # #      # #   # #### #    ##        \n");
-	printf("       ####### #    #   # #      # #   # #    #    ##            \n");
-	printf("            #   ### #   # ###### # #   #  ###  #### ##          \n" ANSI_COLOR_RESET);
+	printf("            *             *                                  \n");
+	printf("           **             *                                \n");
+	printf("          * *             *      *  ****    **    **** *            \n");
+	printf("         *  *   ******    *         *   *  *  *  *    **          \n");
+	printf("        *   *             *      *  *   *  ****  *    **        \n");
+	printf("       *******            *      *  *   *  *     *    **            \n");
+	printf("            *             ****** *  *   *  ****   *******          \n" ANSI_COLOR_RESET);
 	printf("                                                            \n");
-	printf("              1 - Jugar contra el Master                    \n");
+	printf("              1 - Jugar contra la Master-TEC9000                    \n");
 	printf("                    2 - Salir                               \n");
 	printf("                                                            \n");
 	printf("                                                            \n");
@@ -205,7 +216,7 @@ int turnoJugador(char partida[N][N],int numero_jugador,char ficha){
 */
 
 int turnoCPU(char partida[N][N],int numero_jugador,char ficha){
-	//pendiente hacer que juegue
+	JuegaCPU(partida,1,'X');
 	
 	if(VictoriaCPU(partida)){
 		system("clear");
